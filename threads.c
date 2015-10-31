@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <stdio.h>
 
-foriegn_t
+foreign_t
 pl_piHiPri(term_t priority_){
 	int priority;
 	if(!PL_get_integer(priority_,&priority)){
@@ -20,7 +20,7 @@ pl_piHiPri(term_t priority_){
 	PL_succeed;
 }
 
-foriegn_t
+foreign_t
 pl_piThreadCreate(term_t name_){
 	char *name;
 	if(!PL_get_atom_chars(name_,&name)){
@@ -30,6 +30,7 @@ pl_piThreadCreate(term_t name_){
 	PL_succeed;
 }
 
+foreign_t
 pl_piLock(term_t keyNum_){
 	int keyNum;
 	if(!PL_get_integer(keyNum_,&keyNum)){
@@ -39,6 +40,7 @@ pl_piLock(term_t keyNum_){
 	PL_succeed;
 }
 
+foreign_t
 pl_piUnlock(term_t keyNum_){
 	int keyNum;
 	if(!PL_get_integer(keyNum_,&keyNum)){
