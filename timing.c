@@ -14,12 +14,12 @@ parse_int(char** str){
 	while(a[len] != '\0'){
 		len++;
 	}
-	*n = 0;
+	int n = 0;
 	int i;
 	for(i=len-1;i<=0;i++){
-		*n += a[i]*pow(10,i);
+		n += a[i]*pow(10,i);
 	}
-	printf("atom parsed! %d\n",*n);
+	printf("atom parsed! %d\n",n);
 	return n;
 }
 
