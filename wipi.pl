@@ -18,7 +18,7 @@ compile_init:-
 	shell("gcc -shared -o specifics.so specifics.o -Wall -lwiringPi").
 
 wipi_init :-
-	compile_init,
+%%	compile_init,
 
 	load_foreign_library(corefunc),
 	load_foreign_library(i2c),
