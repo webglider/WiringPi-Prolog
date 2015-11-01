@@ -26,7 +26,7 @@ pl_piThreadCreate(term_t name_){
 	if(!PL_get_atom_chars(name_,&name)){
 		return PL_warning("Instantiation fault in piThreadCreate/1");
 	}
-	piThreadCreate(name);
+	piThreadCreate(&name);
 	PL_succeed;
 }
 

@@ -20,11 +20,11 @@ pl_digitalWriteByte(term_t t){
 }
 
 static foreign_t
-pl_pwmSetMode (term_t mode){
+pl_pwmSetMode (term_t mode_){
 
 	int mode;
 
-	if (!PL_get_integer(mode,&mode)) {
+	if (!PL_get_integer(mode_,&mode)) {
 		PL_warning("Argument `mode` not number!\n");
 		PL_fail;		
 	}
@@ -34,11 +34,11 @@ pl_pwmSetMode (term_t mode){
 }
 
 static foreign_t
-pl_pwmSetRange (term_t range){
+pl_pwmSetRange (term_t range_){
 
 	unsigned int range;
 
-	if (!PL_get_integer(range,&range)) {
+	if (!PL_get_integer(range_,&range)) {
 		PL_warning("Argument `range` not number!\n");
 		PL_fail;		
 	}
@@ -53,11 +53,11 @@ pl_pwmSetRange (term_t range){
 }
 
 static foreign_t
-pl_pwmSetClock (term_t divisor){
+pl_pwmSetClock (term_t divisor_){
 
 	int divisor;
 
-	if (!PL_get_integer(divisor,&divisor)) {
+	if (!PL_get_integer(divisor_,&divisor)) {
 		PL_warning("Argument `divisor` not number!\n");
 		PL_fail;		
 	}
@@ -72,21 +72,20 @@ pl_piBoardRev (term_t t){
 }
 
 static foreign_t
-pl_wpiPinToGpio (term_t wPiPin,term_t t){
+pl_wpiPinToGpio (term_t wPiPin_,term_t t){
 	int wPiPin;	
-	if (!PL_get_integer(wPiPin,&wPiPin))
+	if (!PL_get_integer(wPiPin_,&wPiPin))
 	{
 		PL_warning("Argument 'wPiPin' not number");
 		PL_fail;
 	}
-
-	return PL_unify_integer(t,wpiPinToGpio(wpiPin));
+	return PL_unify_integer(t,wpiPinToGpio(wPiPin));
 }
 
 static foreign_t
-pl_physPinToGpio (term_t physPin,term_t t){
+pl_physPinToGpio (term_t physPin_,term_t t){
 	int physPin;	
-	if (!PL_get_integer(physPin,&physPin))
+	if (!PL_get_integer(physPin_,&physPin))
 	{
 		PL_warning("Argument 'physPin' not number");
 		PL_fail;
@@ -96,9 +95,8 @@ pl_physPinToGpio (term_t physPin,term_t t){
 }
 
 static foreign_t
-pl_setPadDrive (term_t group, term_t value){
+pl_setPadDrive (term_t group_, term_t value_){
 	int group,value;
-
 	if (!PL_get_integer(group,&group))
 	{
 		PL_warning("Argument 'group' not number");
@@ -118,8 +116,7 @@ pl_setPadDrive (term_t group, term_t value){
 
 //pinMode
 install_t
-install() { 
-	
+install() { 	
 	// pi specifics install() 
 	PL_register_foreign("digitalWriteByte",2,pl_digitalWriteByte,0);
 	PL_register_foreign("pwmSetMode",1,pl_pwmSetMode,0);

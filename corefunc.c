@@ -114,17 +114,9 @@ pl_analogWrite(term_t pin_,term_t value_){
 //pinMode
 install_t
 install() { 
-	PL_register_foreign("wiringPiSetup", 0, pl_wiringPiSetup, 0);
 	PL_register_foreign("pinMode", 2, pl_pinMode, 0);
 	PL_register_foreign("pwmWrite", 2, pl_pwmWrite, 0);
 	PL_register_foreign("digitalRead", 2, pl_digitalRead, 0);
 	PL_register_foreign("digitalWrite", 2, pl_digitalWrite, 0);
 	PL_register_foreign("pullUpDnControl", 2, pl_pullUpDnControl, 0);	
-	PL_register_foreign("wiringPiSetupSys", 2, pl_wiringPiSetupSys, 0);
-	PL_register_foreign("wiringPiSetupGpio", 2, pl_wiringPiSetupGpio, 0);
-	PL_register_foreign("millis", 2, pl_millis, 0);
-	PL_register_foreign("micros", 2, pl_micros, 0);
-	PL_register_foreign("delay", 2, pl_delay, 0);
-	PL_register_foreign("delayMicrosecondsHard", 2, pl_delayMicrosecondsHard, 0);
-	PL_register_foreign("delayMicroseconds", 2, pl_delayMicroseconds, 0);
 }

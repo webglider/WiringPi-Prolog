@@ -1,0 +1,4 @@
+tpi/
+*.so
+*.o
+platform*

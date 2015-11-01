@@ -4,63 +4,56 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
-
-
-
-int
-parse_int(char** str){
-	char *a = *str;
-	int len = 0;
-	while(a[len] != '\0'){
-		len++;
-	}
-	int n = 0;
-	int i;
-	for(i=len-1;i<=0;i++){
-		n += a[i]*pow(10,i);
-	}
-	printf("atom parsed! %d\n",n);
-	return n;
-}
+#include <math.h>
 
 
 foreign_t
-pl_delayMicroseconds (term_t){
-	char *str;
-	if(!PL_get_chars(t,&str,CVT_NUMBER)){
+pl_delayMicroseconds (term_t t_){
+	int t;
+	if(!PL_get_integer(t_,&t)){
 		PL_warning("pl_delayMicroseconds/1: instantiation fault in PL_get_chars/2");
 	}
-	delayMicroseconds(parse_int(&str));
+	delayMicroseconds(t);
 	PL_succeed;
 }
 
 
 static foreign_t
-pl_delayMicrosecondsHard(term_t t){
-	char *str;
-	if(PL_get_chars(t,&str,CVT_NUMBER)){
+pl_delayMicrosecondsHard(term_t t_){
+	int t;
+	if(!PL_get_integer(t_,&t)){
 		PL_warning("pl_********** : instantiation fault in PL_get_chars/1");
 	}
-	delayMicrosecondsHard(parse_int(&str));
+	delayMicrosecondsHard(t);
 	PL_succeed;
 }
 
 
 static foreign_t
-pl_delay(term_t t){
-	char *str;
-	if(PL_get_chars(t,&str,CVT_NUMBER)){
+pl_delay(term_t t_){
+	int t;
+	if(!PL_get_integer(t_,&t)){
 		PL_warning("pl_********** : instantiation fault in PL_get_chars/1");
 	}
-	delay(parse_int(&str));
+	delay(t);
 	PL_succeed;
 }
 
 static foreign_t
-pl_micros (term_t){
+pl_micros (term_t t){
 	return PL_unify_integer(t,micros());
 }
 static foreign_t
 pl_millis (term_t t){
 	return PL_unify_integer(t,millis());
+}
+
+
+install_t
+install(){
+	PL_register_foreign("delayMicroseconds",1,pl_delayMicroseconds,0);
+	PL_register_foreign("delayMicrosecondsHard",1,pl_delayMicrosecondsHard,0);
+	PL_register_foreign("delay",1,pl_delay,0);
+	PL_register_foreign("micros",1,pl_micros,0);
+	PL_register_foreign("millis",1,pl_millis,0);
 }

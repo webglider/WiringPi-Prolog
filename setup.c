@@ -32,3 +32,8 @@ pl_wiringPiSetupSys(){
 	}
 	PL_succeed;
 }
+
+install_t
+install(){
+	PL_register_foreign("wiringPiSetup",0,pl_wiringPiSetup,0);
+}
