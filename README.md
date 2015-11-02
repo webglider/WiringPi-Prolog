@@ -15,7 +15,7 @@ An SWI-Prolog wrapper for the WiringPi C library
 <pre>
 <code>
  $ gcc -I/usr/lib/swi-prolog/include -fpic -c corefunc.c
- $ gcc -shared -o lowercase.so lowercase.o -Wall -lwiringPi
+ $ gcc -shared -o corefunc.so corefunc.o -Wall -lwiringPi
 </code>
 </pre>
 
