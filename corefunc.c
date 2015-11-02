@@ -15,7 +15,7 @@ pl_wiringPiSetup()  {
 
 //pinMode
 foreign_t
-pl_pinnMode(term_t pin_, term_t mode_)  {
+pl_pinMode(term_t pin_, term_t mode_)  {
  	
  	int pin, mode; 
  	if(!PL_get_integer(pin_, &pin)) {
@@ -99,7 +99,7 @@ pl_pullUpDnControl(term_t pin_, term_t pud_)  {
 install_t
 install() { 
 	PL_register_foreign("wiringPiSetup", 0, pl_wiringPiSetup, 0);
-	PL_register_foreign("pinnMode", 2, pl_pinnMode, 0);
+	PL_register_foreign("pinMode", 2, pl_pinMode, 0);
 	PL_register_foreign("pwmWrite", 2, pl_pwmWrite, 0);
 	PL_register_foreign("digitalRead", 2, pl_digitalRead, 0);
 	PL_register_foreign("digitalWrite", 2, pl_digitalWrite, 0);
